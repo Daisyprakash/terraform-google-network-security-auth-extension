@@ -59,8 +59,8 @@ The predefined `roles/networkservices.admin` role contains the necessary permiss
 | load\_balancing\_scheme | The load balancing scheme for which the AuthzExtension is applicable. Must be one of `INTERNAL_MANAGED` or `EXTERNAL_MANAGED`. | `string` | `"INTERNAL_MANAGED"` | no |
 | location | The location of the AuthzExtension resource. | `string` | `"global"` | no |
 | name | The name of the AuthzExtension resource. | `string` | `"my-authz-extension"` | no |
-| project\_id | The ID of the project in which the resource belongs. If not provided, the provider project is used. | `string` | `null` | no |
-| service | The name of a BackendService that services the requests of the ext\_authz gRPC authorization service. The format is `projects/{project}/global/backendServices/{backendService}`. | `string` | `"projects/project-id/global/backendServices/backend-service-name"` | no |
+| project\_id | The ID of the project in which the resource belongs. If not provided, the provider project is used. | `string` | n/a | yes |
+| service | The name of a BackendService that services the requests of the ext\_authz gRPC authorization service. The format is `projects/{project}/global/backendServices/{backendService}`. | `string` | n/a | yes |
 | timeout | Required. The timeout for the authorization check. A duration in seconds with up to nine fractional digits, ending with 's'. Example: "3.5s". | `string` | `"10s"` | no |
 
 ## Outputs
