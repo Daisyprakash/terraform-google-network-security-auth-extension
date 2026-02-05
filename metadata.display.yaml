@@ -54,3 +54,7 @@ spec:
         timeout:
           name: timeout
           title: Timeout
+    runtime:
+      outputs:
+        id:
+          visibility: VISIBILITY_ROOT
