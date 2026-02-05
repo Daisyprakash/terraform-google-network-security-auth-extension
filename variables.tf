@@ -58,7 +58,6 @@ variable "name" {
 variable "project_id" {
   description = "The ID of the project in which the resource belongs. If not provided, the provider project is used."
   type        = string
-  default     = null
 }
 
 variable "service" {
@@ -66,7 +65,6 @@ variable "service" {
   type        = string
   # Note: This default value is a placeholder to allow the module to pass `terraform plan` without inputs in test environments.
   # It should be overridden with a valid Backend Service self-link in actual deployments.
-  default = "projects/project-id/global/backendServices/backend-service-name"
 }
 
 variable "timeout" {
