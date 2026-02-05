@@ -1,0 +1,76 @@
+/**
+ * Copyright 2026 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+variable "authority" {
+  description = "Required. The authority header of the gRPC request."
+  type        = string
+  default     = "authz-ext.example.com"
+}
+
+variable "description" {
+  description = "A free-text description of the resource."
+  type        = string
+  default     = null
+}
+
+variable "labels" {
+  description = "A set of key/value label pairs to assign to the resource."
+  type        = map(string)
+  default     = {}
+}
+
+variable "load_balancing_scheme" {
+  description = "The load balancing scheme for which the AuthzExtension is applicable. Must be one of `INTERNAL_MANAGED` or `EXTERNAL_MANAGED`."
+  type        = string
+  default     = "INTERNAL_MANAGED"
+
+  validation {
+    condition     = contains(["INTERNAL_MANAGED", "EXTERNAL_MANAGED"], var.load_balancing_scheme)
+    error_message = "The load_balancing_scheme must be either INTERNAL_MANAGED or EXTERNAL_MANAGED."
+  }
+}
+
+variable "location" {
+  description = "The location of the AuthzExtension resource."
+  type        = string
+  default     = "global"
+}
+
+variable "name" {
+  description = "The name of the AuthzExtension resource."
+  type        = string
+  default     = "my-authz-extension"
+}
+
+variable "project_id" {
+  description = "The ID of the project in which the resource belongs. If not provided, the provider project is used."
+  type        = string
+  default     = null
+}
+
+variable "service" {
+  description = "The name of a BackendService that services the requests of the ext_authz gRPC authorization service. The format is `projects/{project}/global/backendServices/{backendService}`."
+  type        = string
+  # Note: This default value is a placeholder to allow the module to pass `terraform plan` without inputs in test environments.
+  # It should be overridden with a valid Backend Service self-link in actual deployments.
+  default = "projects/project-id/global/backendServices/backend-service-name"
+}
+
+variable "timeout" {
+  description = "Required. The timeout for the authorization check. A duration in seconds with up to nine fractional digits, ending with 's'. Example: \"3.5s\"."
+  type        = string
+  default     = "10s"
+}
