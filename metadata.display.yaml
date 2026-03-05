@@ -33,6 +33,12 @@ spec:
         description:
           name: description
           title: Description
+        fail_open:
+          name: fail_open
+          title: Fail Open
+        forward_headers:
+          name: forward_headers
+          title: Forward Headers
         labels:
           name: labels
           title: Labels
@@ -42,6 +48,9 @@ spec:
         location:
           name: location
           title: Location
+        metadata:
+          name: metadata
+          title: Metadata
         name:
           name: name
           title: Name
@@ -54,6 +63,9 @@ spec:
         timeout:
           name: timeout
           title: Timeout
+        wire_format:
+          name: wire_format
+          title: Wire Format
     runtime:
       outputs:
         id:

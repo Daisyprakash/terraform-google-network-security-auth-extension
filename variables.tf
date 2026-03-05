@@ -46,7 +46,6 @@ variable "load_balancing_scheme" {
 variable "location" {
   description = "The location of the AuthzExtension resource."
   type        = string
-  default     = "global"
 }
 
 variable "name" {
@@ -61,14 +60,36 @@ variable "project_id" {
 }
 
 variable "service" {
-  description = "The name of a BackendService that services the requests of the ext_authz gRPC authorization service. The format is `projects/{project}/global/backendServices/{backendService}`."
+  description = "The service that runs the extension (e.g., a BackendService URI or iap.googleapis.com)."
   type        = string
-  # Note: This default value is a placeholder to allow the module to pass `terraform plan` without inputs in test environments.
-  # It should be overridden with a valid Backend Service self-link in actual deployments.
 }
 
 variable "timeout" {
-  description = "Required. The timeout for the authorization check. A duration in seconds with up to nine fractional digits, ending with 's'. Example: \"3.5s\"."
+  description = "Specifies the timeout for each individual message on the stream (between 10-10000ms). Format: '0.1s'."
   type        = string
   default     = "10s"
+}
+
+variable "fail_open" {
+  description = "Determines how the proxy behaves if the call to the extension fails. TRUE to continue, FALSE to error."
+  type        = bool
+  default     = false
+}
+
+variable "metadata" {
+  description = "Metadata included as part of the ProcessingRequest message. Supports {forwarding_rule_id} substitution."
+  type        = map(string)
+  default     = {}
+}
+
+variable "forward_headers" {
+  description = "List of HTTP headers to forward to the extension. If omitted, all headers are sent."
+  type        = list(string)
+  default     = null
+}
+
+variable "wire_format" {
+  description = "The format of communication supported. Possible values: WIRE_FORMAT_UNSPECIFIED, EXT_PROC_GRPC, EXT_AUTHZ_GRPC."
+  type        = string
+  default     = null
 }
