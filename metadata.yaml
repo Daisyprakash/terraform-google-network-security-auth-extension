@@ -75,6 +75,16 @@ spec:
         description: Metadata included as part of the ProcessingRequest message. Supports {forwarding_rule_id} substitution.
         varType: map(string)
         defaultValue: {}
+      - name: model_armor_templates
+        description: Optional list of Model Armor template full resource paths (e.g., projects/{project}/locations/{location}/templates/{template_id}). When provided, adds model_armor_settings to metadata.
+        varType: list(string)
+        defaultValue: []
+        connections:
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-vertex-ai//modules/model-armor-template
+              version: ">=4.0.1"
+            spec:
+              outputExpr: "[template_id]"
       - name: forward_headers
         description: List of HTTP headers to forward to the extension. If omitted, all headers are sent.
         varType: list(string)

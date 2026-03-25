@@ -77,6 +77,12 @@ variable "metadata" {
   default     = {}
 }
 
+variable "model_armor_templates" {
+  description = "Optional list of Model Armor template full resource paths (e.g., projects/{project}/locations/{location}/templates/{template_id}). When provided, adds model_armor_settings to metadata."
+  type        = list(string)
+  default     = []
+}
+
 variable "forward_headers" {
   description = "List of HTTP headers to forward to the extension. If omitted, all headers are sent."
   type        = list(string)
