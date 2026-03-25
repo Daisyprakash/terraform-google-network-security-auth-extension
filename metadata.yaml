@@ -24,7 +24,7 @@ spec:
     source:
       repo: https://github.com/Daisyprakash/terraform-google-network-security-auth-extension.git
       sourceType: git
-    version: 0.0.3
+    version: 0.0.4
     actuationTool:
       flavor: Terraform
       version: ">= 1.3"
