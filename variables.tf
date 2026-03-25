@@ -35,12 +35,7 @@ variable "labels" {
 variable "load_balancing_scheme" {
   description = "The load balancing scheme for which the AuthzExtension is applicable. Must be one of `INTERNAL_MANAGED` or `EXTERNAL_MANAGED`."
   type        = string
-  default     = "INTERNAL_MANAGED"
-
-  validation {
-    condition     = contains(["INTERNAL_MANAGED", "EXTERNAL_MANAGED"], var.load_balancing_scheme)
-    error_message = "The load_balancing_scheme must be either INTERNAL_MANAGED or EXTERNAL_MANAGED."
-  }
+  default     = null
 }
 
 variable "location" {
